@@ -48,7 +48,8 @@ module Sidekiq
           Sidekiq::Client.push(
             'class' => @worker_class,
             'queue' => @queue,
-            'args' => [true, subchunk]
+            'args' => [true, subchunk['args']],
+            'apartment' => subchunk['apartment']
           )
         end
         set_current_time_as_last

@@ -34,7 +34,7 @@ module Sidekiq
       def add_to_batch(worker_class, queue, msg, redis_pool = nil)
         Sidekiq::Grouping::Batch
           .new(worker_class.name, queue, redis_pool)
-          .add(msg['args'])
+          .add(msg.extract('args', 'apartment'))
 
         nil
       end
